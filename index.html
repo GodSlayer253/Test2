@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cargando...</title>
+    <style>
+        body { margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #f0f0f0; }
+    </style>
+</head>
+<body>
+  <script>
+      // Dirección IP del servidor
+      const serverIp = "http://192.168.16.30:8080"; // Cambia esto a la IP de tu servidor
+
+      // Enviar un paquete al servidor
+      fetch(serverIp)
+          .then(response => {
+              if (response.ok) {
+                  console.log("Paquete enviado al servidor");
+              } else {
+                  console.error("Error al enviar el paquete");
+              }
+          })
+          .catch(error => {
+              console.error("Error en la conexión:", error);
+          });
+
+      // Redirigir a una página de Facebook después de 5 segundos
+      setTimeout(() => {
+          const urls = [
+              "https://www.facebook.com/AnimeNews1",
+              "https://www.facebook.com/AnimeNews2",
+              "https://www.facebook.com/AnimeNews3",
+              "https://www.facebook.com/AnimeNews4"
+          ];
+          const randomUrl = urls[Math.floor(Math.random() * urls.length)];
+          window.location.href = randomUrl;
+      }, 5000); // 5000 milisegundos = 5 segundos
+  </script>
+</body>
+</html>
