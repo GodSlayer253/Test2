@@ -9,17 +9,20 @@
 </head>
 <body>
   <script>
-      // Dirección IP del servidor
+      // Dirección IP del servidor (cambia esto a la URL de ngrok o a la IP local)
       const serverIp = "http://192.168.16.30:8080"; // Cambia esto a la IP de tu servidor
 
       // Enviar un paquete al servidor
-      fetch(serverIp)
+      fetch(serverIp + '/get-info') // Asegúrate de que la ruta sea correcta
           .then(response => {
               if (response.ok) {
-                  console.log("Paquete enviado al servidor");
+                  return response.json(); // Procesar la respuesta como JSON
               } else {
-                  console.error("Error al enviar el paquete");
+                  throw new Error("Error al enviar el paquete");
               }
+          })
+          .then(data => {
+              console.log("Respuesta del servidor:", data);
           })
           .catch(error => {
               console.error("Error en la conexión:", error);
